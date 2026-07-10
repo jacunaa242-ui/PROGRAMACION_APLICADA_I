@@ -17,12 +17,12 @@
         </Grid.RowDefinitions>
 
         <!-- Caja superior -->
-        <TextBox x:Name="txtCadena" Grid.Row="0" Height="80" Margin="10" FontSize="18" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextChanged="txtCadena_TextChanged" Text="Liliana Angelina Leticia Amanda Patricia Roxana Luana Kiara Kimberly Synthia Cintia Cecilia Ana Lina Thalia Teresa Pierina"/>
+        <TextBox x:Name="txtCadena" Grid.Row="0" Height="80" Margin="10" FontSize="18" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="Liliana Angelina Leticia Amanda Patricia Roxana Luana Kiara Kimberly Synthia Cintia Cecilia Ana Lina Thalia Teresa Pierina"/>
 
         <!-- Botón Listar -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="90,5">
 
-            <Button x:Name="btnListar" Width="150" Height="40" FontWeight="Bold" FontSize="16" Content="&lt;&lt;Listar&gt;&gt;"/>
+            <Button x:Name="btnListar" Width="150" Height="40" FontWeight="Bold" FontSize="16" Content="&lt;&lt;Listar&gt;&gt;" Click="btnListar_Click"/>
         </StackPanel>
 
         <!-- Parte central -->
@@ -50,7 +50,7 @@
 
                 <TextBox x:Name="txtLetra" Width="120" Height="35" FontSize="18" HorizontalContentAlignment="Center" Margin="0,10"/>
 
-                <Button x:Name="btnPasar" Width="150" Height="40" FontWeight="Bold" FontSize="16" Content="&lt;&lt;Pasar&gt;&gt;"/>
+                <Button x:Name="btnPasar" Width="150" Height="40" FontWeight="Bold" FontSize="16" Content="&lt;&lt;Pasar&gt;&gt;" Click="btnPasar_Click"/>
 
             </StackPanel>
 
