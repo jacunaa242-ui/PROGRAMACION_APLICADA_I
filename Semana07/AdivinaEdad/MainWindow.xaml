@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="63*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1">
-                <Button x:Name="btnIntento" Content="Primer Intento" Height="37"/>
+                <Button x:Name="btnIntento" Content="Primer Intento" Height="37" Click="btnIntento_Click"/>
             </StackPanel>
         </Grid>
         <Label Content="La Computadora piensa que tu edad es:" HorizontalAlignment="Center"  Grid.Row="3" VerticalAlignment="Center" Height="28" Width="268" FontWeight="Bold" FontSize="14"/>

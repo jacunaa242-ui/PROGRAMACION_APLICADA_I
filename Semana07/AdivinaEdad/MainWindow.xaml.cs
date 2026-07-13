@@ -25,5 +25,10 @@ namespace AdivinaEdad
         {
 
         }
+
+        private void btnIntento_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
