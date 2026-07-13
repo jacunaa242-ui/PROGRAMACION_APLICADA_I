@@ -73,8 +73,6 @@ namespace TragaMonedas
             }
 
             lbresultado.Visibility= Visibility.Visible;
-
-            //
             btnIniciarJuego.IsEnabled = true;
         }
 
