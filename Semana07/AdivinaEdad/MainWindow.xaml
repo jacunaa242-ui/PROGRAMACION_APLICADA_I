@@ -62,10 +62,10 @@
                 <ColumnDefinition Width="32*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1">
-                <Button x:Name="btncorrecto" Content="Correcto"/>
+                <Button x:Name="btncorrecto" Content="Correcto" Click="btncorrecto_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="3">
-                <Button x:Name="btnincorrecto" Content="Incorrecto"/>
+                <Button x:Name="btnincorrecto" Content="Incorrecto" Click="btnincorrecto_Click"/>
             </StackPanel>
         </Grid>
 
