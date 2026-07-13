@@ -21,11 +21,6 @@ namespace AdivinaEdad
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void btnIntento_Click(object sender, RoutedEventArgs e)
         {
 
