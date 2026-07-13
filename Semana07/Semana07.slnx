@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="AdivinaEdad/AdivinaEdad.csproj" />
+  <Project Path="TragaMonedas/TragaMonedas.csproj" Id="aaa41c2c-0f42-45b8-b642-e7444f022409" />
 </Solution>
