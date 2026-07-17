@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Imagenes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="100" Margin="235,75,0,0" VerticalAlignment="Top" Width="193" Source="/google-logo-png-google-sva-scholarship-20.png"/>
+        <Image HorizontalAlignment="Center" Height="135" VerticalAlignment="Top" Width="348" Source="/google-logo-png-google-sva-scholarship-20.png" Margin="0,27,0,0"/>
+        <Image x:Name="imagen" HorizontalAlignment="Left" Height="230" Margin="230,163,0,0" VerticalAlignment="Top" Width="420"/>
 
     </Grid>
 </Window>

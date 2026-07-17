@@ -2,4 +2,5 @@
   <Project Path="AdivinaEdad/AdivinaEdad.csproj" />
   <Project Path="Imagenes/Imagenes.csproj" Id="a6ea162a-54b3-41af-8a30-7269e88d2e2f" />
   <Project Path="TragaMonedas/TragaMonedas.csproj" Id="aaa41c2c-0f42-45b8-b642-e7444f022409" />
+  <Project Path="TragaMonedasV2/TragaMonedasV2.csproj" Id="3e97eb3b-a78c-49c2-a428-e35d3af51b18" />
 </Solution>

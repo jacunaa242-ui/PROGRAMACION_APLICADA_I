@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Imagenes
+namespace TragaMonedasV2
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,17 +19,6 @@ namespace Imagenes
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(@"C:\Users\LAB02-PC11\Documents\REOAPLICADA\Semana07\Imagenes\plaza.jpg");
-            bitmapImage.EndInit();
-            imagen.Source = bitmapImage;
-
-            //imagen.Source=new BitmapImage(new Uri("@ C:\REOAPLICADA\Imagenes\"));
         }
     }
 }
