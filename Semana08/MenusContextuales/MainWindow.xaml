@@ -1,0 +1,51 @@
+﻿<Window x:Class="MenusContextuales.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MenusContextuales"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="HACER CLICK DERECHO" HorizontalAlignment="Center"  VerticalAlignment="Center" FontWeight="Bold">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Menu Item 1"/>
+                    <MenuItem Header="Menu Item 2"/>
+                    <MenuItem Header="Menu Item 3"/>
+                    <Separator/>
+                    <MenuItem Header="Menu Item 4"/>
+
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+        <TextBox HorizontalAlignment="Center" Margin="0,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Text="Click derecho para desplegar Menú contextual" FontSize="18">
+            <TextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Cortar" FontSize="14">
+                        <MenuItem.Icon>
+                            <Image Source="/cortar.jpg"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                        <Separator/>
+                    <MenuItem Header="Copiar" FontSize="14">
+                        <MenuItem.Icon>
+                            <Image Source="/copiar.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Pegar " FontSize="14">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="ContentPaste" Width="18">
+                                
+                            </materialDesign:PackIcon>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                </ContextMenu>
+            </TextBox.ContextMenu>
+        </TextBox>
+
+    </Grid>
+</Window>
