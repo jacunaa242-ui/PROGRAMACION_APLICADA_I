@@ -19,6 +19,21 @@ namespace Conecta4
             Reiniciar();
         }
 
+
+        public Tablero Clonar()
+        {
+            Tablero copia = new Tablero();
+            for (int f = 0; f < FILAS; f++)
+            {
+                for (int c = 0; c < COLUMNAS; c++)
+                {
+                    copia.celdas[f, c] = this.celdas[f, c];
+                }
+            }
+            return copia;
+        }
+
+
         public void Reiniciar()
         {
             for (int f = 0; f < FILAS; f++)
@@ -30,15 +45,11 @@ namespace Conecta4
             }
         }
 
-        public int ObtenerFichaEn(int fila, int columna)
-        {
-            return celdas[fila, columna];
-        }
 
-        public bool EstaColumnaLlena(int columna)
-        {
-            return celdas[0, columna] != 0;
-        }
+        public int ObtenerFichaEn(int fila, int columna) => celdas[fila, columna];
+
+        public bool EstaColumnaLlena(int columna) => celdas[0, columna] != 0;
+
 
 
         public int ColocarFicha(int columna, int idJugador)
