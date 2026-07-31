@@ -2,5 +2,7 @@
   <Project Path="Conecta4/Conecta4.csproj" Id="4f41a8af-bcbf-49e5-8d20-a461b6342be5" />
   <Project Path="MenusContextuales/MenusContextuales.csproj" Id="7c7a50f8-08c4-494d-b083-534d098952de" />
   <Project Path="Temperatura/Temperatura.csproj" Id="d984a3b7-aa3d-4a79-991a-0bdada09b4cb" />
+  <Project Path="VentanaDock/VentanaDock.csproj" Id="da93dd3d-b7ff-40be-8077-1aeafcf94830" />
+  <Project Path="VentanMDI/VentanMDI.csproj" Id="545ba871-4b4c-46dc-9fe6-c14b0df4f2e1" />
   <Project Path="Votantes/Votantes.csproj" Id="d0954d4d-3b67-4472-9d3a-bd4194901a02" />
 </Solution>
