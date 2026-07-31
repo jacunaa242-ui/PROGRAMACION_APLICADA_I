@@ -1,0 +1,100 @@
+﻿<Window x:Class="Temperatura.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Temperatura"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.2*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#FFE6E047" BorderBrush="Black" BorderThickness="1" Margin="5">
+            <StackPanel Margin="15">
+                <TextBlock Text="Temperaturas Promedio Mensuales" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Enero" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtEnero" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Febrero" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtFebrero" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Marzo" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtMarzo" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Abril" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtAbril" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Mayo" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtMayo" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Junio" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtJunio" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Julio" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtJulio" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Agosto" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtAgosto" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Setiembre" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtSetiembre" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Octubre" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtOctubre" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Noviembre" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtNoviembre" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5">
+                            <TextBlock Text="Diciembre" Width="60" VerticalAlignment="Center"/>
+                            <TextBox x:Name="txtDiciembre" Width="50" Height="25" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="15,20,15,0">
+
+            <Button x:Name="btnMostrarCalculos" Content="Mostrar Calculos" Height="30" Margin="0,0,0,20" Click="btnMostrarCalculos_Click"/>
+
+            <Label Content="Promedio" Background="#FF7DCD85" HorizontalContentAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtPromedio" Height="25" TextAlignment="Center" Background="#FF99E2A1" IsReadOnly="True" Margin="0,0,0,20"/>
+
+            <Label Content="Nro. Temp. mayores Prom." Background="#FF7DCD85" HorizontalContentAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtMayores" Height="25" TextAlignment="Center" Background="#FF99E2A1" IsReadOnly="True" Margin="0,0,0,30"/>
+
+            <Button x:Name="btnGuardarRegistro" Content="Guardar Registros" Height="30"/>
+
+        </StackPanel>
+
+        <ListBox x:Name="lstMesesMayores" Grid.Column="2" Background="#FF7DCD85" Margin="5" Padding="5"/>
+
+    </Grid>
+</Window>
