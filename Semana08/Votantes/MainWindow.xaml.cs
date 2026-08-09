@@ -112,5 +112,9 @@ namespace Votantes
             lblZonaMax.Text = nombresZonas[indiceZonaMax];
         }
 
+        private void btnCalcular_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
