@@ -50,7 +50,7 @@
                 <ColumnDefinition Width="37*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1">
-                <TextBox x:Name="txtedadadivinada" TextWrapping="Wrap" Width="126" TextChanged="TextBox_TextChanged" FontSize="14" Height="31"/>
+                <TextBox x:Name="txtedadadivinada" TextWrapping="Wrap" Width="126" FontSize="14" Height="31"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="5">
