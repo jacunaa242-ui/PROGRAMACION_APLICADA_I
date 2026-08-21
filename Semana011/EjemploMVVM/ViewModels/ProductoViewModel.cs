@@ -10,26 +10,53 @@ namespace EjemploMVVM.ViewModels
 {
     public class ProductoViewModel
     {
-        public ObservableCollection<Producto> productos { get; set; } = new ObservableCollection<Producto>();
+        public ObservableCollection<Producto> productos { get; set; }
+            = new ObservableCollection<Producto>();
+
+        // NUEVO: categorías
+        public ObservableCollection<KeyValuePair<int, string>> categorias { get; set; }
+            = new ObservableCollection<KeyValuePair<int, string>>();
+
+        // NUEVO: categoría seleccionada
+        public int categoriaSeleccionada { get; set; }
 
         public RelayCommand ComandoCargarProductos { get; set; }
 
         public string textoBuscar { get; set; } = string.Empty;
 
-        private IProductoRepository _repository;
+        private ProductoRepositoryImpl _repository;
 
         public ProductoViewModel()
         {
             _repository = new ProductoRepositoryImpl();
-            ComandoCargarProductos = new RelayCommand(BuscarProductos);
+
+            ComandoCargarProductos =
+                new RelayCommand(BuscarProductos);
+
+            CargarCategorias();
 
             CargarProductos();
         }
 
         private void BuscarProductos()
         {
-            List<Producto> lista = _repository.BuscarPorNombre(textoBuscar);
+            List<Producto> lista;
+
+            // Si seleccionó "Todas"
+            if (categoriaSeleccionada == 0)
+            {
+                lista = _repository.BuscarPorNombre(textoBuscar);
+            }
+            else
+            {
+                // Buscar por categoría
+                lista = _repository.BuscarPorCategoria(
+                    categoriaSeleccionada
+                );
+            }
+
             productos.Clear();
+
             foreach (Producto producto in lista)
             {
                 productos.Add(producto);
@@ -38,17 +65,37 @@ namespace EjemploMVVM.ViewModels
 
         public void CargarProductos()
         {
-            List<Producto> lista = _repository.ListarTodos();
+            List<Producto> lista =
+                _repository.ListarTodos();
+
             productos.Clear();
+
             foreach (Producto producto in lista)
             {
                 productos.Add(producto);
             }
-            int cantidad = productos.Count;
         }
 
+        // NUEVO
+        private void CargarCategorias()
+        {
+            categorias.Clear();
 
-        
+            // Primera opción
+            categorias.Add(
+                new KeyValuePair<int, string>(
+                    0,
+                    "Todas las categorías"
+                )
+            );
 
+            Dictionary<int, string> lista =
+                _repository.ListarCategorias();
+
+            foreach (var categoria in lista)
+            {
+                categorias.Add(categoria);
+            }
+        }
     }
 }
