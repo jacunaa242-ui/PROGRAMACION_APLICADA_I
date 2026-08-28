@@ -1,0 +1,20 @@
+USE Northwind;
+GO
+
+CREATE OR ALTER PROCEDURE SP_ListarProductos
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        P.ProductID,
+        P.ProductName,
+        P.UnitPrice,
+        C.CategoryID,
+        C.CategoryName
+    FROM Products AS P
+    INNER JOIN Categories AS C
+        ON P.CategoryID = C.CategoryID
+    ORDER BY P.ProductID;
+END
+GO

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3770A1F7-8CAE-4D1E-B4A4-1A540A0ACBFD}</ProjectGuid>
+    <ProjectGuid>{DF4E10BA-A105-CC51-37A3-F2507A12DB8D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EjemploSQLComandInsertar</RootNamespace>
     <AssemblyName>EjemploSQLComandInsertar</AssemblyName>
@@ -75,12 +75,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AgregarProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="AgregarCategoria.xaml.cs">
       <DependentUpon>AgregarCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarProducto.xaml.cs">
+      <DependentUpon>AgregarProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
