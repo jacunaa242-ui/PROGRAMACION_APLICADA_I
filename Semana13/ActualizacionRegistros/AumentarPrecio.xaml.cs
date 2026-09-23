@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,23 +15,27 @@ using System.Windows.Shapes;
 namespace ActualizacionRegistros
 {
     /// <summary>
-    /// Lógica de interacción para Producto.xaml
+    /// Lógica de interacción para AumentarPrecio.xaml
     /// </summary>
-    public partial class Producto : Window
+    public partial class AumentarPrecio : Window
     {
         string cn = ConfigurationManager.ConnectionStrings["ActualizacionRegistros.Properties.Settings.Northwind"].ConnectionString;
-        public Producto()
+        ProductoDTO producto;
+        public AumentarPrecio()
         {
             InitializeComponent();
         }
 
+        
+
         private void dgProductos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgProductos.SelectedItem != null){
-                ProductoDTO producto = (ProductoDTO)dgProductos.SelectedItem;
+            if (dgProductos.SelectedItem != null)
+            {
+                producto = (ProductoDTO)dgProductos.SelectedItem;
                 txtId.Text = producto.Id.ToString();
                 txtNombre.Text = producto.Nombre;
-                txtStock.Text = producto.Stock.ToString();
+
             }
         }
 
@@ -40,8 +43,8 @@ namespace ActualizacionRegistros
         {
             txtId.Clear();
             txtNombre.Clear();
-            txtStock.Clear();
-            txtStock.Focus();
+            txtProcentaje.Clear();
+            txtProcentaje.Focus();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -55,7 +58,7 @@ namespace ActualizacionRegistros
             {
                 using (SqlConnection conn = new SqlConnection(cn))
                 {
-                    string query = "SELECT ProductID,ProductName,UnitPrice,UnitsInStock FROM Products ORDER BY ProductName";
+                    string query = "SELECT ProductID,ProductName,UnitPrice,UnitsInStock,RowVersion FROM Products ORDER BY ProductName";
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -69,6 +72,7 @@ namespace ActualizacionRegistros
                             Nombre = reader.GetString(1),
                             Precio = reader.IsDBNull(2) ? null : reader.GetDecimal(2),
                             Stock = reader.IsDBNull(3) ? null : reader.GetInt16(3),
+                            RowVersion = (byte[])reader["RowVersion"]
                         });
                     }
                     dgProductos.ItemsSource = lista;
@@ -86,8 +90,7 @@ namespace ActualizacionRegistros
 
         private void btnActualizar_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            
                 string id = txtId.Text;
 
                 using (SqlConnection conn = new SqlConnection(cn))
@@ -101,19 +104,44 @@ namespace ActualizacionRegistros
                     }
                     else
                     {
-                        cmd.CommandText = "sp_UpdateProductStock";
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                        
-                        cmd.Parameters.Add("@ProductID", System.Data.SqlDbType.Int).Value = id;
-                        cmd.Parameters.Add("@UnitsInStock", System.Data.SqlDbType.SmallInt).Value = string.IsNullOrEmpty(txtStock.Text) ? (Object)DBNull.Value : txtStock.Text;
-                        
-                        cmd.ExecuteNonQuery();
+                        conn.InfoMessage += Conn_InfoMessage;
 
-                        MessageBox.Show($"Producto actualizado");
-                        this.CargarProductos();
+                        cmd.CommandText = "SP_ActualizarPrecio";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@ProductID", System.Data.SqlDbType.Int).Value = id;
+                        cmd.Parameters.Add("@Procentaje", System.Data.SqlDbType.Int).Value = string.IsNullOrEmpty(txtProcentaje.Text) ? (Object)DBNull.Value : txtProcentaje.Text;
+                        cmd.Parameters.Add("@RowVersion", System.Data.SqlDbType.Timestamp).Value = producto.RowVersion;
+                        SqlParameter pNuevoPrecio = new SqlParameter("@NuevoPrecio", System.Data.DbType.Decimal)
+                        {
+                            Direction = System.Data.ParameterDirection.Output,
+                            Precision = 18,
+                            Scale = 2,
+                            DbType = System.Data.DbType.Decimal,
+                        };
+
+                        cmd.Parameters.Add(pNuevoPrecio);
+
+                        int filaAfectadas = cmd.ExecuteNonQuery();
+
+                        decimal nuevoPrecio = (decimal)pNuevoPrecio.Value;
+
+                        if (filaAfectadas > 0)
+                        {
+                            MessageBox.Show($"Producto actualizado nuevo precio es {nuevoPrecio}");
+                            this.CargarProductos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El registro fue modificado por otro usuario");
+                        }
+
+                        
                     }
 
                 }
+            try
+            {
             }
             catch (SqlException ex)
             {
@@ -123,6 +151,11 @@ namespace ActualizacionRegistros
             {
                 MessageBox.Show($"Error general {ex.Message}");
             }
+        }
+
+        private void Conn_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            MessageBox.Show($"{e.Message}");
         }
     }
 }

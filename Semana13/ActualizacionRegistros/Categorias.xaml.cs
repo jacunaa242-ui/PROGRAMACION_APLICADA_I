@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Data.SqlClient;
 
 namespace ActualizacionRegistros
 {
@@ -44,6 +44,7 @@ namespace ActualizacionRegistros
             try
             {
                 string id = txtId.Text;
+                
                 using (SqlConnection conn = new SqlConnection(cn))
                 {
                     conn.Open();
@@ -54,7 +55,7 @@ namespace ActualizacionRegistros
                         cmd.CommandText = "INSERT INTO Categories(CategoryName,Description) VALUES(@Nombre,@Descripcion); select SCOPE_IDENTITY();";
                         cmd.CommandType = System.Data.CommandType.Text;
                         cmd.Parameters.Add("@Nombre", System.Data.SqlDbType.NVarChar, 15).Value = txtNombre.Text;
-                        cmd.Parameters.Add("@Descripcion", System.Data.SqlDbType.NVarChar, 100).Value = txtDescripcion.Text;
+                        cmd.Parameters.Add("@Descripcion", System.Data.SqlDbType.NVarChar, -1).Value = string.IsNullOrEmpty(txtDescripcion.Text) ? (Object)DBNull.Value : txtDescripcion.Text;
                         int idGenerado = Convert.ToInt32(cmd.ExecuteScalar());
 
                         MessageBox.Show($"Categoria agregada con Id {idGenerado}");
@@ -63,12 +64,12 @@ namespace ActualizacionRegistros
                     }
                     else
                     {
-                        cmd.CommandText = @"UPDATE Categories SET CategoryName=@Nombre,
-                                            Description=@Descripcion
+                        cmd.CommandText = @"UPDATE categories SET CategoryName=@Nombre,
+                                            Description=@Descripcion 
                                             WHERE CategoryID=@Id";
                         cmd.CommandType = System.Data.CommandType.Text;
                         cmd.Parameters.Add("@Nombre", System.Data.SqlDbType.NVarChar, 15).Value = txtNombre.Text;
-                        cmd.Parameters.Add("@Descripcion", System.Data.SqlDbType.NVarChar, -1).Value = string.IsNullOrEmpty( txtDescripcion.Text)?(Object)DBNull.Value:txtDescripcion.Text;
+                        cmd.Parameters.Add("@Descripcion", System.Data.SqlDbType.NVarChar, -1).Value = string.IsNullOrEmpty(txtDescripcion.Text)?(Object)DBNull.Value:txtDescripcion.Text;
                         cmd.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
 
                         cmd.ExecuteNonQuery();
@@ -76,6 +77,7 @@ namespace ActualizacionRegistros
                         MessageBox.Show($"Categoria actualizada");
                         this.CargarListaCategorias();
                     }
+                    
                 }
             }
             catch (SqlException ex)
@@ -111,7 +113,7 @@ namespace ActualizacionRegistros
                         {
                             Id = reader.GetInt32(0),
                             Nombre = reader.GetString(1),
-                            Descripcion = reader.IsDBNull("Description")? null :reader.GetString(2)
+                            Descripcion = reader.IsDBNull("Description") ? null : reader.GetString(2)
                         });
                     }
                     dgCategorias.ItemsSource = lista;
@@ -129,13 +131,13 @@ namespace ActualizacionRegistros
 
         private void dgCategorias_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgCategorias.SelectedItem!=null)
+            if (dgCategorias.SelectedItem != null)
             {
                 Categoria categoria = (Categoria)dgCategorias.SelectedItem;
 
                 txtId.Text = categoria.Id.ToString();
-                txtNombre.Text=categoria.Nombre.ToString();
-                txtDescripcion.Text= categoria.Descripcion.ToString();
+                txtNombre.Text = categoria.Nombre.ToString();
+                txtDescripcion.Text = categoria?.Descripcion.ToString();
             }
         }
     }
